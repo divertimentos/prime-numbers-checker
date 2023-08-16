@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import * as S from "./App.styles";
 
 function App() {
   const [userInput, setUserInput] = useState(0);
@@ -37,10 +38,16 @@ function App() {
     setAllPrimes([]);
   };
 
+  const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+  useEffect(() => {
+    console.log(darkModeQuery);
+  }, [darkModeQuery]);
+
   return (
     <>
       <h1>Prime Numbers</h1>
-      <div>
+      <S.Container darkmode={darkModeQuery}>
         <label htmlFor="user-input">Your number: </label>
         <input
           name="user-input"
@@ -48,17 +55,17 @@ function App() {
           onChange={handleChange}
           value={userInput}
         />
-        <div className="button-div">
-          <button onClick={handlePrimes}>Check!</button>
-          <button onClick={handleReset}>Reset</button>
-        </div>
-      </div>
-      <div>
+      </S.Container>
+      <S.ButtonContainer>
+        <S.Button onClick={handlePrimes}>Check!</S.Button>
+        <S.Button onClick={handleReset}>Reset</S.Button>
+      </S.ButtonContainer>
+      <S.Container>
         <p>
           There are {allPrimes.length} primes between 1 and {userInput}:{" "}
           <strong>{allPrimes.join(", ")}</strong>
         </p>
-      </div>
+      </S.Container>
     </>
   );
 }

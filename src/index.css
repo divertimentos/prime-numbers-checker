@@ -47,35 +47,20 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    /* background-color: #f9f9f9; */
-    background-color: #d3d3d3;
-  }
-}
-
-.button-div {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem auto;
-  max-width: 40%;
-
-  button {
-    margin: 1rem auto;
-  }
-}
+/* @media (prefers-color-scheme: light) { */
+/*   :root { */
+/*     color: #213547; */
+/*     background-color: #ffffff; */
+/*   } */
+/*   a:hover { */
+/*     color: #747bff; */
+/*   } */
+/*   button { */
+/*     background-color: #f9f9f9; */
+/*   } */
+/* } */
