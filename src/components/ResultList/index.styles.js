@@ -13,5 +13,7 @@ export const ResultContainer = styled.div`
     list-style: none;
     padding: 0.25rem 2.5rem;
     text-align: left;
+    width: 100%;
+    padding-inline: 10rem;
   }
 `;
