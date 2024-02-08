@@ -13,7 +13,7 @@ const ResultList = ({ allPrimes, userInput }) => {
       <ul>
         There are {allPrimes.length} primes between 1 and {userInput}:{" "}
         {allPrimes.map((prime, index) => {
-          return <li key={index}>{prime}</li>;
+          return <li key={index}>{`${prime.value}: ${prime.isPrime}`}</li>;
         })}
       </ul>
     </S.ResultContainer>

@@ -29,9 +29,15 @@ function App() {
     // setAllPrimes(["true"]);
     for (let counter = 0; counter < userInput + 1; counter++) {
       if (primeChecker(counter)) {
-        setAllPrimes((currArray) => [...currArray, `${counter}: true`]);
+        setAllPrimes((currArray) => [
+          ...currArray,
+          { value: counter, isPrime: true },
+        ]);
       } else {
-        setAllPrimes((currArray) => [...currArray, `${counter}: false`]);
+        setAllPrimes((currArray) => [
+          ...currArray,
+          { value: counter, isPrime: false },
+        ]);
       }
     }
   };
