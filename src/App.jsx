@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import * as S from "./App.styles";
+import ResultList from "./components/ResultList";
 
 function App() {
-  const [userInput, setUserInput] = useState(0);
+  const [userInput, setUserInput] = useState(12);
   const [allPrimes, setAllPrimes] = useState([]);
 
   const primeChecker = (num) => {
@@ -21,20 +22,22 @@ function App() {
 
   const handleChange = (event) => {
     let num = Math.min(100_000, Number(event.target.value));
-    setUserInput(num);
+    setUserInput(parseInt(num));
   };
 
   const handlePrimes = () => {
-    setAllPrimes([2]);
+    // setAllPrimes(["true"]);
     for (let counter = 0; counter < userInput + 1; counter++) {
       if (primeChecker(counter)) {
-        setAllPrimes((currArray) => [...currArray, counter]);
+        setAllPrimes((currArray) => [...currArray, `${counter}: true`]);
+      } else {
+        setAllPrimes((currArray) => [...currArray, `${counter}: false`]);
       }
     }
   };
 
   const handleReset = () => {
-    setUserInput(0);
+    setUserInput("");
     setAllPrimes([]);
   };
 
@@ -48,10 +51,10 @@ function App() {
     <>
       <h1>Prime Numbers</h1>
       <S.Container darkmode={darkModeQuery}>
-        <label htmlFor="user-input">Your number: </label>
         <input
           name="user-input"
           type="text"
+          placeholder="Enter your number"
           onChange={handleChange}
           value={userInput}
         />
@@ -60,12 +63,9 @@ function App() {
         <S.Button onClick={handlePrimes}>Check!</S.Button>
         <S.Button onClick={handleReset}>Reset</S.Button>
       </S.ButtonContainer>
-      <S.Container>
-        <p>
-          There are {allPrimes.length} primes between 1 and {userInput}:{" "}
-          <strong>{allPrimes.join(", ")}</strong>
-        </p>
-      </S.Container>
+      {/* {allPrimes.length > 0 && ( */}
+      <ResultList allPrimes={allPrimes} userInput={userInput} />
+      {/* )} */}
     </>
   );
 }
