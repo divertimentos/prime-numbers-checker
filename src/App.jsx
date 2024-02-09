@@ -66,12 +66,12 @@ function App() {
         />
       </S.Container>
       <S.ButtonContainer>
-        <S.Button onClick={handlePrimes}>Check!</S.Button>
+        <S.Button disabled={allPrimes.length > 0} onClick={handlePrimes}>
+          Check!
+        </S.Button>
         <S.Button onClick={handleReset}>Reset</S.Button>
       </S.ButtonContainer>
-      {/* {allPrimes.length > 0 && ( */}
       <ResultList allPrimes={allPrimes} userInput={userInput} />
-      {/* )} */}
     </>
   );
 }
