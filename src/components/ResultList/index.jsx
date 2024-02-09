@@ -1,21 +1,31 @@
 import PropTypes from "prop-types";
 import * as S from "./index.styles";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const ResultList = ({ allPrimes, userInput }) => {
-  useEffect(() => {
-    console.log("Tipos das coisas:");
-    console.log("allPrimes:");
-    console.log(allPrimes);
+  useEffect(() => {}, []);
+  const [primesCounter, setPrimesCounter] = useState(0);
 
-    console.log("userInput:");
-    console.log(userInput);
-  }, [allPrimes, userInput]);
+  const countPrimes = useCallback(() => {
+    for (const [value] of Object.entries(allPrimes)) {
+      if (value.isPrime) setPrimesCounter((curr) => curr + 1);
+    }
+  }, [allPrimes]);
+
+  useEffect(() => {
+    console.log("Loop:");
+    console.log(countPrimes());
+  }, [countPrimes]);
+
+  useEffect(() => {
+    console.log("Actual primes total:");
+    console.log(primesCounter);
+  }, [primesCounter]);
 
   return (
     <S.ResultContainer>
       <ul>
-        There are {allPrimes.length} primes between 1 and {userInput}:{" "}
+        There are {primesCounter} primes between 1 and {userInput}:{" "}
         {allPrimes.map((prime, index) => {
           return (
             <li key={index}>

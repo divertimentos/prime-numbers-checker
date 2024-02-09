@@ -26,8 +26,14 @@ function App() {
   };
 
   const handlePrimes = () => {
-    // setAllPrimes(["true"]);
-    for (let counter = 0; counter < userInput + 1; counter++) {
+    setAllPrimes((curr) => [
+      ...curr,
+      { value: 0, isPrime: false },
+      { value: 1, isPrime: false },
+      { value: 2, isPrime: true },
+    ]);
+
+    for (let counter = 3; counter < userInput + 1; counter++) {
       if (primeChecker(counter)) {
         setAllPrimes((currArray) => [
           ...currArray,
@@ -48,10 +54,6 @@ function App() {
   };
 
   const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-  useEffect(() => {
-    console.log(darkModeQuery);
-  }, [darkModeQuery]);
 
   return (
     <>
