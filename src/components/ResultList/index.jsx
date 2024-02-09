@@ -4,9 +4,13 @@ import { useEffect } from "react";
 
 const ResultList = ({ allPrimes, userInput }) => {
   useEffect(() => {
-    console.log("Lista:");
-    console.dir(allPrimes);
-  }, [allPrimes]);
+    console.log("Tipos das coisas:");
+    console.log("allPrimes:");
+    console.log(allPrimes);
+
+    console.log("userInput:");
+    console.log(userInput);
+  }, [allPrimes, userInput]);
 
   return (
     <S.ResultContainer>
@@ -15,7 +19,7 @@ const ResultList = ({ allPrimes, userInput }) => {
         {allPrimes.map((prime, index) => {
           return (
             <li key={index}>
-              <span>{`${prime.value}`}:</span>{" "}
+              {`${prime.value}`}:{" "}
               <span
                 style={{ fontWeight: prime.isPrime ? "bold" : "normal" }}
               >{`${prime.isPrime}`}</span>
@@ -28,8 +32,17 @@ const ResultList = ({ allPrimes, userInput }) => {
 };
 
 ResultList.propTypes = {
-  allPrimes: PropTypes.arrayOf(["number"]),
-  userInput: PropTypes.string,
+  allPrimes: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.bool,
+      PropTypes.shape({
+        isPrime: PropTypes.bool,
+        value: PropTypes.number,
+      }),
+    ]),
+  ),
+  userInput: PropTypes.number,
 };
 
 export default ResultList;
